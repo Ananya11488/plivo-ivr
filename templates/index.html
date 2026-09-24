@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plivo IVR Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 60px auto; text-align: center; }
+    input { padding: 10px; width: 80%; font-size: 16px; margin-bottom: 12px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #status { margin-top: 16px; color: #444; }
+  </style>
+</head>
+<body>
+  <h2>Plivo IVR Demo</h2>
+  <p>Trigger an outbound call that authenticates via OTP, then walks through a
+     multi-level IVR menu.</p>
+
+  <input type="text" id="to_number" value="{{ default_number }}" placeholder="+91XXXXXXXXXX" />
+  <br />
+  <button onclick="makeCall()">Call me now</button>
+  <p id="status"></p>
+
+  <script>
+    async function makeCall() {
+      const status = document.getElementById('status');
+      const to_number = document.getElementById('to_number').value;
+      status.textContent = 'Placing call...';
+      try {
+        const res = await fetch('/make-call', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ to_number })
+        });
+        const data = await res.json();
+        status.textContent = res.ok
+          ? `Call initiated to ${data.to} (UUID: ${data.call_uuid})`
+          : `Error: ${data.error}`;
+      } catch (e) {
+        status.textContent = 'Error: ' + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
