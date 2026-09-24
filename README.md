@@ -108,3 +108,9 @@ plivo-ivr/
   `AUDIO_URL_ES` in `.env` for your own publicly hosted clips.
 - The associate number is a placeholder — replace `ASSOCIATE_NUMBER` in
   `.env` with a real number if you want to test live call forwarding.
+
+## Demo Video
+
+[Watch the 3–5 minute demo on Loom](https://www.loom.com/share/b155cdd8a79445bd9c71e6d4b52d4c80)
+
+  
