@@ -37,7 +37,7 @@ None of these are hardcoded in the source. They're loaded from a local
 
 1. **Clone the repo and install dependencies**
    ```bash
-   git clone <this-repo-url>
+   git clone https://github.com/Ananya11488/plivo-ivr.git
    cd plivo-ivr
    python3 -m venv venv && source venv/bin/activate
    pip install -r requirements.txt
